@@ -1,33 +1,37 @@
-public class Hinhchunhat {
-    public static void main(String[] args) {
-        try {
-            int x = Integer.parseInt(args[0]);
-            int y = Integer.parseInt(args[1]);
-            Rectangle rect = new Rectangle(x, y);
-            System.out.println("Chu vi hình chữ nhật: " + rect.perimeter());
-            System.out.println("Diện tích hình chữ nhật: " + rect.area());
+class HinhChuNhat {
+    private double chieuDai;
+    private double chieuRong;
 
-        } catch (NumberFormatException e) {
-            System.out.println("Lỗi: x và y phải là số nguyên.");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Lỗi: " + e.getMessage());
-        }
+    public HinhChuNhat(double chieuDai, double chieuRong) {
+        this.chieuDai = chieuDai;
+        this.chieuRong = chieuRong;
+    }
+
+    public double tinhChuVi() {
+        return 2 * (chieuDai + chieuRong);
+    }
+
+    public double tinhDienTich() {
+        return chieuDai * chieuRong;
+    }
+
+    public void hienThiThongTin() {
+        System.out.println("Hình chữ nhật: ");
+        System.out.println("- Chiều dài: " + chieuDai);
+        System.out.println("- Chiều rộng: " + chieuRong);
+        System.out.println("- Chu vi: " + tinhChuVi());
+        System.out.println("- Diện tích: " + tinhDienTich());
+        System.out.println("----------------------");
     }
 }
-class Rectangle {
-    private int x;
-    private int y;
-    public Rectangle(int x, int y) {
-        if (x <= 0 || y <= 0) {
-            throw new IllegalArgumentException("Chiều dài và chiều rộng phải là số nguyên dương.");
-        }
-        this.x = x;
-        this.y = y;
-    }
-    public int perimeter() {
-        return 2 * (x + y);
-    }
-    public int area() {
-        return x * y;
+public class Hinhchunhat {
+    public static void main(String[] args) {
+        HinhChuNhat h1 = new HinhChuNhat(5, 3);
+        HinhChuNhat h2 = new HinhChuNhat(7, 2);
+        HinhChuNhat h3 = new HinhChuNhat(10, 4);
+
+        h1.hienThiThongTin();
+        h2.hienThiThongTin();
+        h3.hienThiThongTin();
     }
 }
