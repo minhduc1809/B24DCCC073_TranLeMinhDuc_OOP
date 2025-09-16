@@ -1,37 +1,44 @@
-class HinhChuNhat {
-    private double chieuDai;
-    private double chieuRong;
+public class HinhChuNhat {
+    static class Rectangle {
+        private int width;
+        private int height;
 
-    public HinhChuNhat(double chieuDai, double chieuRong) {
-        this.chieuDai = chieuDai;
-        this.chieuRong = chieuRong;
+        public Rectangle(int width, int height) {
+            if (width <= 0 || height <= 0) {
+                throw new IllegalArgumentException("Chiều dài và chiều rộng phải là số nguyên dương.");
+            }
+            this.width = width;
+            this.height = height;
+        }
+
+        public int calculatePerimeter() {
+            return 2 * (width + height);
+        }
+
+        public int calculateArea() {
+            return width * height;
+        }
     }
 
-    public double tinhChuVi() {
-        return 2 * (chieuDai + chieuRong);
-    }
-
-    public double tinhDienTich() {
-        return chieuDai * chieuRong;
-    }
-
-    public void hienThiThongTin() {
-        System.out.println("Hình chữ nhật: ");
-        System.out.println("- Chiều dài: " + chieuDai);
-        System.out.println("- Chiều rộng: " + chieuRong);
-        System.out.println("- Chu vi: " + tinhChuVi());
-        System.out.println("- Diện tích: " + tinhDienTich());
-        System.out.println("----------------------");
-    }
-}
-public class Hinhchunhat {
     public static void main(String[] args) {
-        HinhChuNhat h1 = new HinhChuNhat(5, 3);
-        HinhChuNhat h2 = new HinhChuNhat(7, 2);
-        HinhChuNhat h3 = new HinhChuNhat(10, 4);
+        try {
+            if (args.length < 2) {
+                System.out.println("Vui lòng nhập đủ 2 tham số: chiều dài và chiều rộng.");
+                return;
+            }
+            int width = Integer.parseInt(args[0]);
+            int height = Integer.parseInt(args[1]);
 
-        h1.hienThiThongTin();
-        h2.hienThiThongTin();
-        h3.hienThiThongTin();
+            Rectangle rectangle = new Rectangle(width, height);
+
+            System.out.println(rectangle);
+            System.out.println("Chu vi của hình chữ nhật: " + rectangle.calculatePerimeter());
+            System.out.println("Diện tích của hình chữ nhật: " + rectangle.calculateArea());
+
+        } catch (NumberFormatException e) {
+            System.out.println("Chiều dài và chiều rộng phải là số nguyên.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
